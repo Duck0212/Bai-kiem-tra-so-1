@@ -9,17 +9,19 @@ const SchoolSystem = {
     this.soLuongHocSinh = this.danhSach.length;
   },
 
-  themHocSinh(hocSinh = {}) {
-    const namHienTai = new Date().getFullYear();
-    const stt = String(this.soLuongHocSinh + 1).padStart(3, "0");
-    const maMoi = `ma${namHienTai}${stt}`;
-    const hocSinhMoi = {
-      maHS: maMoi,
-      ...hocSinh,
-      diemTB: Number(hocSinh.diemTB || 0),
-    };
-    this.danhSach.push(hocSinhMoi);
-    this.soLuongHocSinh++;
+  themHocSinh(hocSinh = []) {
+    for (let hs of hocSinh) {
+      const namHienTai = new Date().getFullYear();
+      const stt = String(this.soLuongHocSinh + 1).padStart(3, "0");
+      const maMoi = `ma${namHienTai}${stt}`;
+      const hocSinhMoi = {
+        maHS: maMoi,
+        ...hs,
+        diemTB: Number(hs.diemTB || 0),
+      };
+      this.danhSach.push(hocSinhMoi);
+      this.soLuongHocSinh++;
+    }
   },
 
   timHocSinh(maHS) {
